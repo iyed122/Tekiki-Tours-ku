@@ -1,0 +1,129 @@
+{
+  "description": "Sample dataset structure for Tekiki Tours ML training",
+  "customers": [
+    {
+      "id": "customer_1",
+      "name": "Ahmed Ben Ali",
+      "email": "ahmed@example.com",
+      "preferences": {
+        "budget": 1500,
+        "duration": 3,
+        "interests": ["culture", "history", "photography"],
+        "travel_style": "Mid-range comfort",
+        "group_size": 2
+      },
+      "demographics": {
+        "age_group": "26-35",
+        "nationality": "Tunisian",
+        "previous_bookings": 2
+      },
+      "past_bookings": ["booking_1", "booking_2"]
+    },
+    {
+      "id": "customer_2",
+      "name": "Marie Dubois",
+      "email": "marie@example.com",
+      "preferences": {
+        "budget": 2500,
+        "duration": 7,
+        "interests": ["adventure", "nature", "photography"],
+        "travel_style": "Luxury experience",
+        "group_size": 4
+      },
+      "demographics": {
+        "age_group": "36-45",
+        "nationality": "French",
+        "previous_bookings": 0
+      },
+      "past_bookings": []
+    }
+  ],
+  "interactions": [
+    {
+      "id": "interaction_1",
+      "customer_id": "customer_1",
+      "tour_id": "tour_1",
+      "interaction_type": "booking",
+      "timestamp": "2024-01-15T10:30:00Z",
+      "session_duration": 450,
+      "device_type": "desktop",
+      "rating": 5,
+      "metadata": {
+        "referrer": "google",
+        "page_views": 3,
+        "time_to_decision": 1200
+      }
+    },
+    {
+      "id": "interaction_2",
+      "customer_id": "customer_2",
+      "tour_id": "tour_2",
+      "interaction_type": "click",
+      "timestamp": "2024-01-16T14:20:00Z",
+      "session_duration": 180,
+      "device_type": "mobile",
+      "rating": null,
+      "metadata": {
+        "referrer": "facebook",
+        "page_views": 1,
+        "time_to_decision": null
+      }
+    }
+  ],
+  "features_for_training": {
+    "customer_features": [
+      "budget_per_day",
+      "duration_preference",
+      "group_size",
+      "travel_style_encoded",
+      "age_group_encoded",
+      "nationality_encoded",
+      "booking_history_count",
+      "interest_vector"
+    ],
+    "tour_features": [
+      "price",
+      "duration",
+      "category_encoded",
+      "difficulty_encoded",
+      "rating",
+      "review_count",
+      "group_size_min",
+      "group_size_max",
+      "tag_vector"
+    ],
+    "interaction_features": [
+      "device_type_encoded",
+      "session_duration",
+      "time_of_day",
+      "day_of_week",
+      "referrer_encoded"
+    ],
+    "derived_features": [
+      "budget_match_score",
+      "duration_compatibility",
+      "group_size_compatibility",
+      "interest_overlap_score",
+      "seasonal_relevance",
+      "popularity_score"
+    ]
+  },
+  "target_variables": {
+    "interaction_strength": {
+      "description": "Numerical score representing interaction strength",
+      "scale": "1-5",
+      "mapping": {
+        "view": 1.0,
+        "click": 2.0,
+        "favorite": 3.0,
+        "inquiry": 4.0,
+        "booking": 5.0
+      }
+    },
+    "conversion_probability": {
+      "description": "Probability of booking after recommendation",
+      "scale": "0-1",
+      "calculation": "bookings / total_recommendations"
+    }
+  }
+}
